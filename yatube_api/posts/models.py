@@ -2,6 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models.constraints import UniqueConstraint
 
+
 User = get_user_model()
 
 
@@ -46,19 +47,19 @@ class Follow(models.Model):
         on_delete=models.CASCADE,
         related_name='follower',
     )
-    author = models.ForeignKey(
+    following = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='following',
+        related_name='following'
     )
 
-    class Meta:
-        constraints = [
-            UniqueConstraint(
-                fields=['user', 'author'],
-                name='unique_follower'),
-            models.CheckConstraint(
-                check=~models.Q(user=models.F('author')),
-                name='check_following'
-            )
-        ]
+    # class Meta:
+    #     constraints = [
+    #         UniqueConstraint(
+    #             fields=['user', 'following'],
+    #             name='unique_follower'),
+    #         models.CheckConstraint(
+    #             check=~models.Q(user=models.F('following')),
+    #             name='check_following'
+    #         )
+    #     ]

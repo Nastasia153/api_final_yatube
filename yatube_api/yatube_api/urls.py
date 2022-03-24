@@ -12,8 +12,6 @@ from drf_yasg.views import get_schema_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    # path('auth/', include('djoser.urls')),
-    # path('auth/', include('djoser.urls.jwt')),
     path(
         'redoc/',
         TemplateView.as_view(template_name='redoc.html'),

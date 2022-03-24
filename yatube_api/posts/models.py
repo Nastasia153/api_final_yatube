@@ -53,13 +53,13 @@ class Follow(models.Model):
         related_name='following'
     )
 
-    # class Meta:
-    #     constraints = [
-    #         UniqueConstraint(
-    #             fields=['user', 'following'],
-    #             name='unique_follower'),
-    #         models.CheckConstraint(
-    #             check=~models.Q(user=models.F('following')),
-    #             name='check_following'
-    #         )
-    #     ]
+    class Meta:
+        constraints = [
+            UniqueConstraint(
+                fields=['user', 'following'],
+                name='unique_follower'),
+            models.CheckConstraint(
+                check=~models.Q(user=models.F('following')),
+                name='check_following'
+            )
+        ]

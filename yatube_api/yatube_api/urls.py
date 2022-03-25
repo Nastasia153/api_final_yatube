@@ -17,16 +17,15 @@ urlpatterns = [
 ]
 
 schema_view = get_schema_view(
-   openapi.Info(
-      title="Posts API",
-      default_version='v1',
-      description="Документация для приложения posts проекта Yatube",
-      # terms_of_service="URL страницы с пользовательским соглашением",
-      contact=openapi.Contact(email="admin@yatube.ru"),
-      license=openapi.License(name="BSD License"),
-   ),
-   public=True,
-   permission_classes=(permissions.AllowAny,),
+    openapi.Info(
+        title="Posts API",
+        default_version='v1',
+        description="Документация для приложения posts проекта Yatube",
+        contact=openapi.Contact(email="admin@yatube.ru"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
 )
 
 urlpatterns += [

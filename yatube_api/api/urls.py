@@ -13,7 +13,6 @@ router.register(
     basename='comment'
 )
 router.register(r'follow', FollowViewSet)
-# print(router.urls)
 
 urlpatterns = [
     path('v1/', include(router.urls)),

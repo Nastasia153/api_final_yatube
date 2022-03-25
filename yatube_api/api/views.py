@@ -3,11 +3,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 
-from posts.models import Group, Post, Follow
+from posts.models import Group, Post, Follow, Comment
 from .custom_mixins import AuthorOnlyMixin
 from .custom_viewsets import CreateListRetrieveViewSet
 from .pagination import PostsPagination
-from .serializers import *
+from .serializers import (PostSerializer,
+                          GroupSerializer,
+                          CommentSerializer,
+                          FollowSerializer)
 
 
 class PostViewSet(AuthorOnlyMixin, viewsets.ModelViewSet):

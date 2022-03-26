@@ -3,7 +3,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 
-from posts.models import Group, Post, Follow, Comment, User
+from posts.models import Group, Post, Comment
 from .custom_mixins import AuthorOnlyMixin
 from .custom_viewsets import CreateListRetrieveViewSet
 from .pagination import PostsPagination

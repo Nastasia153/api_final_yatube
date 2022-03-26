@@ -3,7 +3,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters
 from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
 
-from posts.models import Group, Post, Follow, Comment
+from posts.models import Group, Post, Follow, Comment, User
 from .custom_mixins import AuthorOnlyMixin
 from .custom_viewsets import CreateListRetrieveViewSet
 from .pagination import PostsPagination
@@ -47,7 +47,6 @@ class CommentViewSet(AuthorOnlyMixin, viewsets.ModelViewSet):
 
 
 class FollowViewSet(CreateListRetrieveViewSet):
-    queryset = Follow.objects.all()
     serializer_class = FollowSerializer
     filter_backends = (DjangoFilterBackend, filters.SearchFilter)
     search_fields = ('following__username',)
@@ -56,4 +55,5 @@ class FollowViewSet(CreateListRetrieveViewSet):
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
-        return Follow.objects.filter(user=self.request.user)
+        user = self.request.user
+        return user.follower.all()
